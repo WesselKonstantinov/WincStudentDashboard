@@ -9,6 +9,7 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowForward from '@material-ui/icons/ArrowForward';
 import { makeStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -42,8 +43,8 @@ function StudentsListPage({ students }) {
                             <ListItemText primary={`${student.name.first} ${student.name.last}`} />
                             <ListItemSecondaryAction>
                                 <IconButton
-                                // component={Link}
-                                // to={`/students/${student.name.first}`}
+                                    component={Link}
+                                    to={`/students/${student.name.first}`}
                                 >
                                     <ArrowForward />
                                 </IconButton>

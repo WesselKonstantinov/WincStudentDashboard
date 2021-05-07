@@ -7,6 +7,7 @@ import Menu from './components/Menu';
 import HomePage from './components/HomePage';
 import StudentsListPage from './components/StudentsListPage';
 import AssignmentsListPage from './components/AssignmentsListPage';
+import SingleStudentPage from './components/SingleStudentPage';
 
 function App() {
   const [students, setStudents] = useState([]);
@@ -67,6 +68,9 @@ function App() {
                 getAssignments={getAssignments}
                 getAverageRatingsForAssignment={getAverageRatingsForAssignment}
               />
+            </Route>
+            <Route exact path="/students/:name">
+              <SingleStudentPage students={students} />
             </Route>
           </Switch>
         </Container>
