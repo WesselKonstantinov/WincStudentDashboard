@@ -1,5 +1,5 @@
 import { csv } from 'd3';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
@@ -35,6 +35,19 @@ function App() {
     fetchEvaluations();
   }, []);
 
+  const getAssignments = evaluations => [...new Set(evaluations.map(evaluation => evaluation.assignment))];
+
+  const getAverageRatingsForAssignment = assignment => {
+    const ratingsForAssignment = evaluations.filter(evaluation => evaluation.assignment === assignment);
+    const averageDifficulty = ratingsForAssignment.map(rating => rating.difficulty).reduce((total, currentValue) => total + currentValue) / ratingsForAssignment.length;
+    const averageEnjoyability = ratingsForAssignment.map(rating => rating.enjoyability).reduce((total, currentValue) => total + currentValue) / ratingsForAssignment.length;
+    return {
+      assignment,
+      averageDifficulty,
+      averageEnjoyability,
+    };
+  };
+
   return (
     <Router>
       <div className="App">
@@ -49,7 +62,11 @@ function App() {
               <StudentsListPage students={students} />
             </Route>
             <Route exact path="/assignments">
-              <AssignmentsListPage />
+              <AssignmentsListPage
+                evaluations={evaluations}
+                getAssignments={getAssignments}
+                getAverageRatingsForAssignment={getAverageRatingsForAssignment}
+              />
             </Route>
           </Switch>
         </Container>
