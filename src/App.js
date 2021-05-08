@@ -40,8 +40,8 @@ function App() {
 
   const getAverageRatingsForAssignment = assignment => {
     const ratingsForAssignment = evaluations.filter(evaluation => evaluation.assignment === assignment);
-    const averageDifficulty = ratingsForAssignment.map(rating => rating.difficulty).reduce((total, currentValue) => total + currentValue) / ratingsForAssignment.length;
-    const averageEnjoyability = ratingsForAssignment.map(rating => rating.enjoyability).reduce((total, currentValue) => total + currentValue) / ratingsForAssignment.length;
+    const averageDifficulty = ratingsForAssignment.map(rating => rating.difficulty).reduce((total, currentValue) => total + currentValue, 0) / ratingsForAssignment.length;
+    const averageEnjoyability = ratingsForAssignment.map(rating => rating.enjoyability).reduce((total, currentValue) => total + currentValue, 0) / ratingsForAssignment.length;
     return {
       assignment,
       averageDifficulty,
@@ -54,10 +54,14 @@ function App() {
       <div className="App">
         <CssBaseline />
         <Menu />
-        <Container fixed component="main">
+        <Container maxWidth="xl" component="main">
           <Switch>
             <Route exact path="/">
-              <HomePage />
+              <HomePage
+                evaluations={evaluations}
+                getAssignments={getAssignments}
+                getAverageRatingsForAssignment={getAverageRatingsForAssignment}
+              />
             </Route>
             <Route exact path="/students">
               <StudentsListPage students={students} />
