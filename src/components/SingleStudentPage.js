@@ -80,6 +80,7 @@ function SingleStudentPage({ students, evaluations }) {
             </Paper>
             <Paper className={classes.root} elevation={3}>
                 <Typography
+                    className={classes.title}
                     component="h2"
                     variant="h3"
                     align="center"
