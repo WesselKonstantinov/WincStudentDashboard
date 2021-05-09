@@ -74,7 +74,10 @@ function App() {
               />
             </Route>
             <Route exact path="/students/:name">
-              <SingleStudentPage students={students} />
+              <SingleStudentPage
+                students={students}
+                evaluations={evaluations}
+              />
             </Route>
           </Switch>
         </Container>
