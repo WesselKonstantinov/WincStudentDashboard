@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import TablePaginationActions from './TablePaginationActions';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -42,7 +43,9 @@ function AssignmentsTable({ evaluations, getAssignments, getAverageRatingsForAss
                         : rows).map(row => (
                             <TableRow key={row.assignment}>
                                 <TableCell component="th" scope="row">
-                                    {row.assignment}
+                                    <Link to={`assignments/${row.assignment}`}>
+                                        {row.assignment}
+                                    </Link>
                                 </TableCell>
                                 <TableCell align="right">
                                     {row.averageDifficulty}

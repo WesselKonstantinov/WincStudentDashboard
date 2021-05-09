@@ -8,6 +8,7 @@ import HomePage from './components/HomePage';
 import StudentsListPage from './components/StudentsListPage';
 import AssignmentsListPage from './components/AssignmentsListPage';
 import SingleStudentPage from './components/SingleStudentPage';
+import SingleAssignmentPage from './components/SingleAssignmentPage';
 
 function App() {
   const [students, setStudents] = useState([]);
@@ -78,6 +79,9 @@ function App() {
                 students={students}
                 evaluations={evaluations}
               />
+            </Route>
+            <Route exact path="/assignments/:name">
+              <SingleAssignmentPage evaluations={evaluations} />
             </Route>
           </Switch>
         </Container>
