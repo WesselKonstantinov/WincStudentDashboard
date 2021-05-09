@@ -16,6 +16,10 @@ const useStyles = makeStyles(theme => ({
         marginTop: theme.spacing(3),
         marginBottom: theme.spacing(3),
     },
+    avatar: {
+        width: theme.spacing(6),
+        height: theme.spacing(6),
+    },
 }));
 
 function StudentsListPage({ students }) {
@@ -36,11 +40,16 @@ function StudentsListPage({ students }) {
                         <ListItem key={student.login.uuid}>
                             <ListItemAvatar>
                                 <Avatar
+                                    className={classes.avatar}
+                                    variant="square"
                                     alt={`${student.name.first} ${student.name.last}`}
-                                    src={student.picture.thumbnail}
+                                    src={student.picture.medium}
                                 />
                             </ListItemAvatar>
-                            <ListItemText primary={`${student.name.first} ${student.name.last}`} />
+                            <ListItemText
+                                primary={`${student.name.first} ${student.name.last}`}
+                                primaryTypographyProps={{ variant: 'body1' }}
+                            />
                             <ListItemSecondaryAction>
                                 <IconButton
                                     component={Link}
