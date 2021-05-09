@@ -10,6 +10,8 @@ import {
 } from 'victory';
 
 function AssignmentsChart({ chartData }) {
+    const dataContainsAverageRatings = chartData.every(datum => 'averageDifficulty' in datum && 'averageEnjoyability' in datum);
+
     return (
         <VictoryChart
             width={600}
@@ -31,26 +33,24 @@ function AssignmentsChart({ chartData }) {
                 <VictoryBar
                     data={chartData}
                     x="assignment"
-                    y="averageDifficulty"
-                    labels={({ datum }) => `Assignment: ${datum.assignment}
-                    Average difficulty: ${datum.averageDifficulty}
-                    `}
-                    labelComponent={<VictoryTooltip
-                        style={{ fontSize: 6 }}
-                        flyoutPadding={{ top: 5, left: 7, right: 7 }}
-                    />}
+                    y={dataContainsAverageRatings ? 'averageDifficulty' : 'difficulty'}
+                    labels={({ datum }) => dataContainsAverageRatings ?
+                        `Assignment: ${datum.assignment}
+                        Average difficulty: ${datum.averageDifficulty}` :
+                        `Assignment: ${datum.assignment}
+                        Difficulty rating by ${datum.student}: ${datum.difficulty}`}
+                    labelComponent={<VictoryTooltip style={{ fontSize: 6 }} />}
                 />
                 <VictoryBar
                     data={chartData}
                     x="assignment"
-                    y="averageEnjoyability"
-                    labels={({ datum }) => `Assignment: ${datum.assignment}
-                    Average enjoyability: ${datum.averageEnjoyability}
-                    `}
-                    labelComponent={<VictoryTooltip
-                        style={{ fontSize: 6 }}
-                        flyoutPadding={{ top: 5, left: 7, right: 7 }}
-                    />}
+                    y={dataContainsAverageRatings ? 'averageEnjoyability' : 'enjoyability'}
+                    labels={({ datum }) => dataContainsAverageRatings ?
+                        `Assignment: ${datum.assignment}
+                        Average enjoyability: ${datum.averageEnjoyability}` :
+                        `Assignment: ${datum.assignment}
+                        Enjoyability rating by ${datum.student}: ${datum.enjoyability}`}
+                    labelComponent={<VictoryTooltip style={{ fontSize: 6 }} />}
                 />
             </VictoryGroup>
             <VictoryAxis dependentAxis domain={[0, 5]} />
