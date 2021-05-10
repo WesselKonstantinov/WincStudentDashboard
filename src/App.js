@@ -13,6 +13,11 @@ import SingleAssignmentPage from './components/SingleAssignmentPage';
 function App() {
   const [students, setStudents] = useState([]);
   const [evaluations, setEvaluations] = useState([]);
+  const [visibility, setVisibility] = useState({
+    difficultyRating: true,
+    enjoyabilityRating: true,
+  });
+  const [lineChartDisplay, setLineChartDisplay] = useState(false);
 
   useEffect(() => {
     const fetchStudents = async () => {
@@ -50,6 +55,16 @@ function App() {
     };
   };
 
+  const toggleRatingsVisibility = e => {
+    const { name, checked } = e.target;
+    setVisibility({
+      ...visibility,
+      [name]: checked,
+    });
+  };
+
+  const handleChartDisplay = () => setLineChartDisplay(!lineChartDisplay);
+
   return (
     <Router>
       <div className="App">
@@ -60,8 +75,12 @@ function App() {
             <Route exact path="/">
               <HomePage
                 evaluations={evaluations}
+                visibility={visibility}
+                lineChartDisplay={lineChartDisplay}
                 getAssignments={getAssignments}
                 getAverageRatingsForAssignment={getAverageRatingsForAssignment}
+                toggleRatingsVisibility={toggleRatingsVisibility}
+                handleChartDisplay={handleChartDisplay}
               />
             </Route>
             <Route exact path="/students">
@@ -78,10 +97,20 @@ function App() {
               <SingleStudentPage
                 students={students}
                 evaluations={evaluations}
+                visibility={visibility}
+                lineChartDisplay={lineChartDisplay}
+                toggleRatingsVisibility={toggleRatingsVisibility}
+                handleChartDisplay={handleChartDisplay}
               />
             </Route>
             <Route exact path="/assignments/:name">
-              <SingleAssignmentPage evaluations={evaluations} />
+              <SingleAssignmentPage
+                evaluations={evaluations}
+                visibility={visibility}
+                lineChartDisplay={lineChartDisplay}
+                toggleRatingsVisibility={toggleRatingsVisibility}
+                handleChartDisplay={handleChartDisplay}
+              />
             </Route>
           </Switch>
         </Container>

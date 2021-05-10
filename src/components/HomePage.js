@@ -13,7 +13,16 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-function HomePage({ evaluations, getAssignments, getAverageRatingsForAssignment }) {
+function HomePage(props) {
+    const {
+        evaluations,
+        visibility,
+        lineChartDisplay,
+        getAssignments,
+        getAverageRatingsForAssignment,
+        toggleRatingsVisibility,
+        handleChartDisplay
+    } = props;
     const classes = useStyles();
     const assignments = getAssignments(evaluations);
     const chartData = assignments.map(assignment => getAverageRatingsForAssignment(assignment));
@@ -28,7 +37,13 @@ function HomePage({ evaluations, getAssignments, getAverageRatingsForAssignment 
             >
                 Average Ratings
             </Typography>
-            <AssignmentsChart chartData={chartData} />
+            <AssignmentsChart
+                chartData={chartData}
+                visibility={visibility}
+                lineChartDisplay={lineChartDisplay}
+                toggleRatingsVisibility={toggleRatingsVisibility}
+                handleChartDisplay={handleChartDisplay}
+            />
         </Paper>
     );
 }

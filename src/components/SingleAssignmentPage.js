@@ -14,7 +14,14 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-function SingleAssignmentPage({ evaluations }) {
+function SingleAssignmentPage(props) {
+    const {
+        evaluations,
+        visibility,
+        lineChartDisplay,
+        toggleRatingsVisibility,
+        handleChartDisplay
+    } = props;
     const classes = useStyles();
     const { name } = useParams();
     const chartData = evaluations.filter(evaluation => evaluation.assignment === name);
@@ -29,7 +36,13 @@ function SingleAssignmentPage({ evaluations }) {
             >
                 {name}
             </Typography>
-            <StudentsChart chartData={chartData} />
+            <StudentsChart
+                chartData={chartData}
+                visibility={visibility}
+                lineChartDisplay={lineChartDisplay}
+                toggleRatingsVisibility={toggleRatingsVisibility}
+                handleChartDisplay={handleChartDisplay}
+            />
         </Paper>
     );
 }

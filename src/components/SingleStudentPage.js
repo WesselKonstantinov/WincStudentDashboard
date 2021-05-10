@@ -24,7 +24,15 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-function SingleStudentPage({ students, evaluations }) {
+function SingleStudentPage(props) {
+    const {
+        students,
+        evaluations,
+        visibility,
+        lineChartDisplay,
+        toggleRatingsVisibility,
+        handleChartDisplay
+    } = props;
     const classes = useStyles();
     const { name } = useParams();
     const student = students.find(student => student.name.first === name);
@@ -87,7 +95,13 @@ function SingleStudentPage({ students, evaluations }) {
                 >
                     Student Ratings
             </Typography>
-                <AssignmentsChart chartData={chartData} />
+                <AssignmentsChart
+                    chartData={chartData}
+                    visibility={visibility}
+                    lineChartDisplay={lineChartDisplay}
+                    toggleRatingsVisibility={toggleRatingsVisibility}
+                    handleChartDisplay={handleChartDisplay}
+                />
             </Paper>
         </>
     );
