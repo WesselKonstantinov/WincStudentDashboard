@@ -1,6 +1,7 @@
 import { csv } from 'd3';
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 import Menu from './components/Menu';
@@ -9,8 +10,22 @@ import StudentsListPage from './components/StudentsListPage';
 import AssignmentsListPage from './components/AssignmentsListPage';
 import SingleStudentPage from './components/SingleStudentPage';
 import SingleAssignmentPage from './components/SingleAssignmentPage';
+import Footer from './components/Footer';
+
+const useStyles = makeStyles({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: '100vh',
+  },
+  main: {
+    flexGrow: 1,
+  },
+})
 
 function App() {
+  const classes = useStyles();
+
   const [students, setStudents] = useState([]);
   const [evaluations, setEvaluations] = useState([]);
   const [visibility, setVisibility] = useState({
@@ -67,10 +82,14 @@ function App() {
 
   return (
     <Router>
-      <div className="App">
+      <div className={classes.root}>
         <CssBaseline />
         <Menu />
-        <Container maxWidth="xl" component="main">
+        <Container
+          className={classes.main}
+          maxWidth="xl"
+          component="main"
+        >
           <Switch>
             <Route exact path="/">
               <HomePage
@@ -114,6 +133,7 @@ function App() {
             </Route>
           </Switch>
         </Container>
+        <Footer />
       </div>
     </Router>
   );
