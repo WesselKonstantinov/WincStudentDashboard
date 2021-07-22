@@ -1,6 +1,6 @@
 import { csv } from 'd3';
 import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { HashRouter, Switch, Route } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
@@ -91,7 +91,7 @@ function App() {
   const handleChartDisplay = () => setLineChartDisplay(!lineChartDisplay);
 
   return (
-    <Router>
+    <HashRouter basename='/'>
       <div className={classes.root}>
         <CssBaseline />
         <Menu />
@@ -145,7 +145,7 @@ function App() {
         </Container>
         <Footer />
       </div>
-    </Router>
+    </HashRouter>
   );
 }
 
