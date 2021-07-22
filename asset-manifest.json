@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/WincStudentDashboard/static/js/main.2f71832b.chunk.js",
-    "main.js.map": "/WincStudentDashboard/static/js/main.2f71832b.chunk.js.map",
+    "main.js": "/WincStudentDashboard/static/js/main.68b6e961.chunk.js",
+    "main.js.map": "/WincStudentDashboard/static/js/main.68b6e961.chunk.js.map",
     "runtime-main.js": "/WincStudentDashboard/static/js/runtime-main.382f3a6e.js",
     "runtime-main.js.map": "/WincStudentDashboard/static/js/runtime-main.382f3a6e.js.map",
     "static/js/2.6c6a3cca.chunk.js": "/WincStudentDashboard/static/js/2.6c6a3cca.chunk.js",
@@ -13,6 +13,6 @@
   "entrypoints": [
     "static/js/runtime-main.382f3a6e.js",
     "static/js/2.6c6a3cca.chunk.js",
-    "static/js/main.2f71832b.chunk.js"
+    "static/js/main.68b6e961.chunk.js"
   ]
 }
