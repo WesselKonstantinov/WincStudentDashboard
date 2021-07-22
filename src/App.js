@@ -36,7 +36,12 @@ function App() {
 
   useEffect(() => {
     const fetchStudents = async () => {
-      const response = await fetch('./data/students-data.json');
+      const response = await fetch('./data/students-data.json', {
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      });
       const data = await response.json();
       setStudents(data.results);
     };
@@ -45,7 +50,12 @@ function App() {
 
   useEffect(() => {
     const fetchEvaluations = async () => {
-      const results = await csv('./data/evaluations-data.csv');
+      const results = await csv('./data/evaluations-data.csv', {
+        headers: {
+          'Content-Type': 'text/csv',
+          'Accept': 'text/csv'
+        }
+      });
       const data = results.map(result => ({
         student: result.student,
         assignment: result.assignment,
